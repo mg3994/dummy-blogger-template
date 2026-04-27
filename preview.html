@@ -5,7 +5,7 @@
     <meta charset='UTF-8'/>
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
     <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
-    <title><data:view.title.escaped/></title>
+    <title>Antinna - Premium Landing Page</title>
 
     <!-- SEO Meta Tags -->
     <b:include data='blog' name='all-head-content'/>
@@ -17,10 +17,10 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Antinna",
-      "url": "<data:blog.url.jsonEscaped/>",
+      "url": "#",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "<data:blog.url.jsonEscaped/>?q={search_term_string}",
+        "target": "#?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
@@ -67,28 +67,16 @@
     <meta content='https://antinna.in/twitter-image.png' name='twitter:image'/>
 
     <!-- FOUC Prevention -->
-    <script>//<![CDATA[
+    <script>
         (function() {
             const storageKey = 'theme-preference';
             const saved = localStorage.getItem(storageKey);
             const theme = saved ? saved : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             document.documentElement.setAttribute('data-theme', theme);
-
-            // Critical CSS for initial theme to prevent flash
-            const style = document.createElement('style');
-            if (theme === 'dark') {
-                style.innerHTML = 'html, body { background-color: #0f172a !important; color: #f8fafc !important; }';
-            } else {
-                style.innerHTML = 'html, body { background-color: #ffffff !important; color: #0f172a !important; }';
-            }
-            document.head.appendChild(style);
-            window.addEventListener('DOMContentLoaded', () => {
-                setTimeout(() => style.remove(), 1000);
-            });
         })();
-    //]]></script>
+    </script>
 
-    <b:skin><![CDATA[
+    <style>
         /*
         <Group description="Global Colors" title="Global Colors">
             <Variable name="primary.color" description="Primary Color" type="color" default="#6366f1"/>
@@ -126,26 +114,26 @@
         */
 
         :root {
-            --primary: $(primary.color);
-            --secondary: $(secondary.color);
-            --accent: $(accent.color);
-            --bg: $(bg.color);
-            --surface: $(surface.color);
-            --text: $(text.color);
-            --text-muted: $(muted.text.color);
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #f43f5e;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
 
-            --btn-bg: $(button.bg);
-            --btn-text: $(button.text);
-            --btn-radius: $(button.radius);
+            --btn-bg: #6366f1;
+            --btn-text: #ffffff;
+            --btn-radius: 50px;
 
-            --card-bg: $(card.bg);
-            --card-shadow: $(card.shadow);
-            --card-radius: $(card.radius);
+            --card-bg: #1e293b;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --card-radius: 24px;
 
-            --input-bg: $(input.bg);
-            --input-border: $(input.border);
-            --input-text: $(input.text);
-            --input-focus: $(input.focus.border);
+            --input-bg: #1e293b;
+            --input-border: #334155;
+            --input-text: #f8fafc;
+            --input-focus: #6366f1;
 
             --blur: 16px;
             --glass-bg: rgba(255, 255, 255, 0.05);
@@ -372,7 +360,7 @@
             z-index: 100;
             box-shadow: 0 10px 20px -5px var(--primary);
         }
-    ]]></b:skin>
+    </style>
 </head>
 <body>
     <header id='header'>
@@ -429,7 +417,7 @@
         </section>
 
         <!-- App Showcase (Modular Section) -->
-        <b:section id='showcase-section' name='App Showcase' showaddelement='yes'/>
+        <div>
 
         <!-- Contact Section -->
         <section id='contact'>
@@ -438,9 +426,9 @@
                     <h2>Get in Touch</h2>
                     <p>Have questions? We're here to help.</p>
                 </div>
-                <b:section id='contact-section' name='Contact Form' showaddelement='yes'>
-                    <b:widget id='ContactForm1' locked='false' title='Contact Us' type='ContactForm'/>
-                </b:section>
+                <div>
+                    <div>
+                </div>
             </div>
         </section>
     </main>
@@ -457,7 +445,7 @@
 
     <button id='scrollTop'>&#8593;</button>
 
-    <script>//<![CDATA[
+    <script>
         // Theme Management
         const themeToggle = document.getElementById('theme-toggle');
         const storageKey = 'theme-preference';
@@ -511,6 +499,6 @@
                 });
             });
         });
-    //]]></script>
+    </script>
 </body>
 </html>
