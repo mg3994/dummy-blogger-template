@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsversion='3' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+    <meta charset='UTF-8'/>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+    <title><data:view.title.escaped/></title>
+
+    <!-- SEO Meta Tags -->
+    <meta expr:content='data:blog.metaDescription' name='description'/>
+    <meta content='Antinna.in, Community, Convenience, Social Commerce, Mentor-Mentee, Networking' name='keywords'/>
+    <meta content='Antinna' name='author'/>
+
+    <!-- Open Graph / Facebook -->
+    <meta content='website' property='og:type'/>
+    <meta expr:content='data:blog.url' property='og:url'/>
+    <meta expr:content='data:blog.title' property='og:title'/>
+    <meta expr:content='data:blog.metaDescription' property='og:description'/>
+    <meta content='https://antinna.in/assets/og-image.png' property='og:image'/> <!-- Placeholder -->
+
+    <!-- Twitter -->
+    <meta content='summary_large_image' name='twitter:card'/>
+    <meta expr:content='data:blog.url' name='twitter:url'/>
+    <meta expr:content='data:blog.title' name='twitter:title'/>
+    <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+    <meta content='https://antinna.in/assets/twitter-image.png' name='twitter:image'/> <!-- Placeholder -->
+
+    <b:include data='blog' name='all-head-content'/>
+
+    <!-- Structured Data -->
+    <script type='application/ld+json'>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Antinna",
+      "url": "<data:blog.url.jsonEscaped/>",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "<data:blog.url.jsonEscaped/>?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type='application/ld+json'>
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Antinna",
+      "operatingSystem": "Android",
+      "applicationCategory": "SocialNetworkingApplication, ShoppingApplication",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1000"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    }
+    </script>
+    <script type='application/ld+json'>
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Antinna.in",
+      "url": "https://antinna.in",
+      "logo": "https://antinna.in/logo.png"
+    }
+    </script>
+
+    <b:skin><![CDATA[
+        /* Variable Definitions */
+        /* <Variable name="main.color" description="Main Color" type="color" default="#6366f1"/> */
+        /* <Variable name="bg.color" description="Background Color" type="color" default="#ffffff"/> */
+        /* <Variable name="text.color" description="Text Color" type="color" default="#1f2937"/> */
+
+        :root {
+            --primary: $(main.color);
+            --primary-hover: #4f46e5;
+            --bg-body: $(bg.color);
+            --bg-card: #f9fafb;
+            --text-main: $(text.color);
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme='dark'] {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --glass-bg: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme='light']) {
+                --bg-body: #0f172a;
+                --bg-card: #1e293b;
+                --text-main: #f8fafc;
+                --text-muted: #94a3b8;
+                --border: #334155;
+                --glass-bg: rgba(15, 23, 42, 0.7);
+                --glass-border: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* Base Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Layout Helpers */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Header & Nav */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+        header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 4rem;
+            padding-top: 10rem;
+        }
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 2px solid var(--border);
+            color: var(--text-main);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+        .hero-image img {
+            width: 100%;
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .feature-card {
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            transition: var(--transition);
+        }
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll Top */
+        #scrollTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            z-index: 99;
+            border: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            .hero-content h1 { font-size: 3rem; }
+            .cta-group { justify-content: center; }
+            .hero-image { max-width: 500px; margin: 0 auto; }
+        }
+    ]]></b:skin>
+
+    <script>//<![CDATA[
+        // Theme Management
+        const storageKey = 'theme-preference';
+
+        const getColorPreference = () => {
+            if (localStorage.getItem(storageKey))
+                return localStorage.getItem(storageKey);
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+
+        const theme = { value: getColorPreference() };
+
+        const reflectPreference = () => {
+            document.documentElement.setAttribute('data-theme', theme.value);
+            document.querySelector('#theme-toggle')?.setAttribute('aria-label', theme.value);
+        };
+
+        const setPreference = () => {
+            localStorage.setItem(storageKey, theme.value);
+            reflectPreference();
+        };
+
+        window.onload = () => {
+            reflectPreference();
+
+            // Sticky Header & Scroll Top
+            const header = document.querySelector('header');
+            const scrollTopBtn = document.querySelector('#scrollTop');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                if (window.scrollY > 500) {
+                    scrollTopBtn.style.display = 'flex';
+                } else {
+                    scrollTopBtn.style.display = 'none';
+                }
+
+                // Reveal on scroll
+                const reveals = document.querySelectorAll('.reveal');
+                reveals.forEach(reveal => {
+                    const windowHeight = window.innerHeight;
+                    const revealTop = reveal.getBoundingClientRect().top;
+                    const revealPoint = 150;
+                    if (revealTop < windowHeight - revealPoint) {
+                        reveal.classList.add('active');
+                    }
+                });
+            });
+
+            // Theme Toggle Click
+            document.querySelector('#theme-toggle')?.addEventListener('click', () => {
+                theme.value = theme.value === 'light' ? 'dark' : 'light';
+                setPreference();
+            });
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        };
+
+        // Sync with system changes
+        window.matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', ({ matches: isDark }) => {
+                theme.value = isDark ? 'dark' : 'light';
+                setPreference();
+            });
+    //]]></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id='main-header'>
+        <div class='container'>
+            <nav>
+                <a class='logo' href='#'>Antinna</a>
+                <div style='display: flex; gap: 2rem; align-items: center;'>
+                    <div class='desktop-menu' style='display: flex; gap: 2rem;'>
+                        <a href='#about' style='text-decoration: none; color: inherit; font-weight: 500;'>About</a>
+                        <a href='#features' style='text-decoration: none; color: inherit; font-weight: 500;'>Features</a>
+                    </div>
+                    <button id='theme-toggle' class='theme-toggle' title='Toggle Theme'>
+                        <svg viewBox='0 0 24 24' width='20' height='20' stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='5'></circle><line x1='12' y1='1' x2='12' y2='3'></line><line x1='12' y1='21' x2='12' y2='23'></line><line x1='4.22' y1='4.22' x2='5.64' y2='5.64'></line><line x1='18.36' y1='18.36' x2='19.78' y2='19.78'></line><line x1='1' y1='12' x2='3' y2='12'></line><line x1='21' y1='12' x2='23' y2='12'></line><line x1='4.22' y1='19.78' x2='5.64' y2='18.36'></line><line x1='18.36' y1='5.64' x2='19.78' y2='4.22'></line></svg>
+                    </button>
+                    <a class='btn btn-primary' href='#download' style='padding: 0.6rem 1.2rem; font-size: 0.9rem;'>Download</a>
+                </div>
+            </nav>
+        </div>
+        <b:section id='header-section' name='Header' showaddelement='no'/>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id='hero'>
+            <div class='container hero'>
+                <div class='hero-content'>
+                    <b:section id='hero-content-section' name='Hero Content' showaddelement='no'>
+                        <b:widget id='Text1' locked='false' title='Hero Heading' type='Text'>
+                            <b:widget-settings>
+                                <b:widget-setting name='content'>Antinna.in</b:widget-setting>
+                            </b:widget-settings>
+                            <b:includable id='main'>
+                                <h1><data:content/></h1>
+                                <p>Where Community Meets Convenience</p>
+                                <div class='cta-group'>
+                                    <a class='btn btn-primary' href='#download'>Download on Play Store</a>
+                                    <a class='btn btn-outline' href='#about'>Learn More</a>
+                                </div>
+                            </b:includable>
+                        </b:widget>
+                    </b:section>
+                </div>
+                <div class='hero-image'>
+                    <img alt='App Mockup' src='https://placehold.co/600x800/6366f1/ffffff?text=Antinna+App+Mockup'/>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id='about' class='reveal'>
+            <div class='container'>
+                <b:section id='about-section' name='About Content' showaddelement='yes'>
+                    <b:widget id='Text2' locked='false' title='About Heading' type='Text'>
+                        <b:widget-settings>
+                            <b:widget-setting name='content'>Empowering Communities</b:widget-setting>
+                        </b:widget-settings>
+                        <b:includable id='main'>
+                            <div style='text-align: center; max-width: 800px; margin: 0 auto;'>
+                                <h2 style='font-size: 2.5rem; margin-bottom: 1.5rem;'><data:content/></h2>
+                                <p style='font-size: 1.2rem; color: var(--text-muted);'>Antinna is more than just an app. It's a comprehensive social commerce platform designed to bring people together for mutual growth and convenience.</p>
+                            </div>
+                        </b:includable>
+                    </b:widget>
+                </b:section>
+                <div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-top: 4rem;'>
+                    <div>
+                        <h3>Social Commerce</h3>
+                        <p>Buy and sell within your community with trust and ease.</p>
+                    </div>
+                    <div>
+                        <h3>Mentor–Mentee</h3>
+                        <p>Connect with experts or share your knowledge to grow together.</p>
+                    </div>
+                    <div>
+                        <h3>Community Growth</h3>
+                        <p>Fostering local connections and supporting small businesses.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id='features' class='reveal'>
+            <div class='container'>
+                <b:section id='features-section' name='Features Content' showaddelement='yes'>
+                    <b:widget id='Text3' locked='false' title='Features Heading' type='Text'>
+                        <b:widget-settings>
+                            <b:widget-setting name='content'>Why Choose Antinna?</b:widget-setting>
+                        </b:widget-settings>
+                        <b:includable id='main'>
+                            <div style='text-align: center; margin-bottom: 4rem;'>
+                                <h2 style='font-size: 2.5rem;'><data:content/></h2>
+                            </div>
+                        </b:includable>
+                    </b:widget>
+                </b:section>
+                <div class='features-grid'>
+                    <div class='feature-card'>
+                        <div class='feature-icon'>S</div>
+                        <h3>Social Networking</h3>
+                        <p>Build meaningful relationships with mentors and mentees in your niche.</p>
+                    </div>
+                    <div class='feature-card'>
+                        <div class='feature-icon'>E</div>
+                        <h3>Ecommerce Store</h3>
+                        <p>Access exclusive deals and high-quality products from trusted sellers.</p>
+                    </div>
+                    <div class='feature-card'>
+                        <div class='feature-icon'>H</div>
+                        <h3>Handy Services</h3>
+                        <p>Find local experts for all your needs, from repairs to consultations.</p>
+                    </div>
+                    <div class='feature-card'>
+                        <div class='feature-icon'>F</div>
+                        <h3>Fast &amp; Affordable</h3>
+                        <p>Enjoy lightning-fast service and the best pricing in the market.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id='download' class='reveal'>
+            <div class='container'>
+                <div style='background: var(--primary); padding: 5rem 2rem; border-radius: 40px; text-align: center; color: white;'>
+                    <h2 style='font-size: 3rem; margin-bottom: 1.5rem;'>Ready to Join?</h2>
+                    <p style='font-size: 1.25rem; margin-bottom: 3rem; opacity: 0.9;'>Download Antinna now and experience the power of community.</p>
+                    <a class='btn' href='#' style='background: white; color: var(--primary); font-size: 1.2rem; padding: 1.2rem 3rem;'>
+                        Get it on Google Play
+                    </a>
+                </div>
+            </div>
+            <b:section id='cta-section' name='CTA Widgets' showaddelement='yes'/>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style='padding: 4rem 0; border-top: 1px solid var(--border);'>
+        <div class='container'>
+            <div style='display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;'>
+                <div>
+                    <a class='logo' href='#'>Antinna</a>
+                    <p style='margin-top: 1rem; color: var(--text-muted);'>&#169; 2024 Antinna.in. All rights reserved.</p>
+                </div>
+                <div style='display: flex; gap: 1.5rem;'>
+                    <a href='#' style='color: var(--text-muted); text-decoration: none;'>Twitter</a>
+                    <a href='#' style='color: var(--text-muted); text-decoration: none;'>Instagram</a>
+                    <a href='#' style='color: var(--text-muted); text-decoration: none;'>LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <b:section id='footer-section' name='Footer Widgets' showaddelement='no'/>
+    </footer>
+
+    <button id='scrollTop' title='Go to top'>&#8593;</button>
+
+    <!-- Google Analytics Placeholder -->
+    <b:if cond='data:blog.analyticsAccountNumber'>
+        <script async='async' expr:src='&quot;https://www.googletagmanager.com/gtag/js?id=&quot; + data:blog.analyticsAccountNumber'></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag(&apos;js&apos;, new Date());
+            gtag(&apos;config&apos;, &apos;<data:blog.analyticsAccountNumber/>&apos;);
+        </script>
+    </b:if>
+</body>
+</html>
